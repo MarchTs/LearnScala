@@ -8,8 +8,11 @@ object P04 {
     val someListLength = length(someList)
     println(s"length with pattern matching ${someListLength}")
 
-    val something = someList.foldLeft(0) { (c, d) => d + 1 }
     println(s"length with foldleft ${useFoldLeft(someList)}")
+
+    val something = someList.zipWithIndex.last._2 + 1
+    println(s"length with zipWithIndex ${something}")
+
   }
 
   def length[any](list: List[any]): Int = {
