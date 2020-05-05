@@ -6,7 +6,8 @@ object P09 {
     val somelist = List("a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e")
     val packResult = pack(somelist)
     println(packResult)
-
+    val packResult2= recursiveSpan(somelist)
+    println(packResult2)
 
 
   }
@@ -24,18 +25,16 @@ object P09 {
     }
   }
 
-  def compressThenPack(list: List[Any]): List[List[Any]] = {
-    def compress(list: List[Any]): List[Any] = {
-      list.foldLeft(List[Any]()) { (a, b) =>
-        if (a.isEmpty) List(b)
-        else if (a.last == b) a
-        else a :+ b
+  def recursiveSpan(list: List[Any]): List[List[Any]] = {
+    def _tailRecur(list: List[Any], acc: List[List[Any]] = List[List[Any]]()): List[List[Any]] = list match {
+      case Nil => acc
+      case head :: _ => {
+        val something = list.span(_ == head)
+        _tailRecur(something._2, acc.appended(something._1))
       }
     }
-    val compressed = compress(list)
-    compressed.map(something => {
-      list.takeWhile(_ == something)
-    })
+
+    _tailRecur(list)
   }
 
 
