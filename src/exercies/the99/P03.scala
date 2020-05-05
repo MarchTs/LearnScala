@@ -12,6 +12,9 @@ object P03 {
     println(s"Find at index by recursive ${traverse(theList, findAtLocation)}")
     println(s"Find at index by without any build-in ${withoutAnyBuildIn(theList, findAtLocation)}")
 
+    val liftlist = theList.lift(1)
+    println(s"Find at index by recommand from veerapatyok ${liftlist}")
+
   }
 
   @tailrec
